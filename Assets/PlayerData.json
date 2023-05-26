@@ -1,0 +1,19 @@
+{
+  "playerDatas": [
+    {
+      "Name": "Dog",
+      "Level": 1,
+      "Gold": 1
+    },
+    {
+      "Name": "Cat",
+      "Level": 2,
+      "Gold": 10
+    },
+    {
+      "Name": "Rabbit",
+      "Level": 3,
+      "Gold": 100
+    }
+  ]
+}
