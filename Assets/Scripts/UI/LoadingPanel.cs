@@ -33,12 +33,17 @@ public class LoadingPanel : MonoBehaviour
                 loadingSlider.value = 1f;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    asyncOperation.allowSceneActivation = true;
                     if(UIManager.HasInstance && GameManager.HasInstance)
                     {
-                        UIManager.Instance.ActiveGamePanel(true);
+                        UIManager.Instance.ActiveFadePanel(true);
                         UIManager.Instance.ActiveLoadingPanel(false);
-                        GameManager.Instance.StartGame();
+                        UIManager.Instance.FadePanel.Fade(1,() =>
+                        {
+                            asyncOperation.allowSceneActivation = true;
+                            UIManager.Instance.ActiveGamePanel(true);
+                            GameManager.Instance.StartGame();
+                            UIManager.Instance.ActiveFadePanel(false);
+                        });
                     }
                 }
             }

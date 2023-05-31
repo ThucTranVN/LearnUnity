@@ -33,11 +33,23 @@ public class FinishLevel : MonoBehaviour
         {
             if (AudioManager.HasInstance && UIManager.HasInstance)
             {
+                StartCoroutine(LoadScene());
                 AudioManager.Instance.PlaySE(AUDIO.SE_FINISH);
                 AudioManager.Instance.PlayBGM(AUDIO.BGM_BGM_04);
-                UIManager.Instance.GamePanel.SetTimeRemain(240);
+                UIManager.Instance.ActiveFadePanel(true);
+                UIManager.Instance.FadePanel.Fade(1f, () =>
+                {
+                    UIManager.Instance.ActiveFadePanel(false);
+                    UIManager.Instance.GamePanel.SetTimeRemain(240);
+                });        
             }
-            SceneManager.LoadScene("Level2");
+            
         }
+    }
+
+    private IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Level2");
     }
 }

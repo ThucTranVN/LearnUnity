@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,10 @@ public class UIManager : BaseManager<UIManager>
     private LoadingPanel loadingPanel;
     public LoadingPanel LoadingPanel => loadingPanel;
 
+    [SerializeField]
+    private FadePanel fadePanel;
+    public FadePanel FadePanel => fadePanel;
+
     void Start()
     {
         ActiveMenuPanel(true);
@@ -41,6 +46,7 @@ public class UIManager : BaseManager<UIManager>
         ActiveVictoryPanel(false);
         ActivePausePanel(false);
         ActiveLoadingPanel(false);
+        ActiveFadePanel(false);
     }
 
     private void Update()
@@ -86,7 +92,12 @@ public class UIManager : BaseManager<UIManager>
     }
 
     public void ActiveLoadingPanel(bool active)
-    {
+    { 
         loadingPanel.gameObject.SetActive(active);
+    }
+
+    public void ActiveFadePanel(bool active)
+    {
+        fadePanel.gameObject.SetActive(active);
     }
 }
